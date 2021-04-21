@@ -1,0 +1,71 @@
+version: '3.8'
+
+services:
+  db:
+    image: mysql:8
+    container_name: mysqldb
+    environment:
+      MYSQL_DATABASE: studymama
+      MYSQL_USER: studymama
+      MYSQL_PASSWORD: studymama@123
+      MYSQL_ROOT_PASSWORD: root
+    ports:
+      - '3306:3306'
+
+  studymama:
+    image: studymama:latest
+    hostname: studymama
+    container_name: studymama
+    restart: on-failure
+    build: .
+    ports:
+      - "8080:8080"
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mysql://mysqldb:3306/studymama?createDatabaseIfNotExist=true&autoReconnect=true
+      SPRING_DATASOURCE_USERNAME: "studymama"
+      SPRING_DATASOURCE_PASSWORD: "studymama@123"
+      SPRING_ELASTICSEARCH_REST_URIS: "elasticsearch:9200"
+      SPRING_ELASTICSEARCH_REST_CONNECTION-TIMEOUT: "1s"
+      SPRING_ELASTICSEARCH_REST_READ-TIMEOUT: "1m"
+      SPRING_ELASTICSEARCH_REST_PASSWORD:
+      SPRING_ELASTICSEARCH_REST_USERNAME:
+    depends_on:
+      - elasticsearch
+      - mysqldb
+
+  elasticsearch:
+    image: docker.elastic.co/elasticsearch/elasticsearch:7.6.0
+    hostname: elasticsearch
+    container_name: elasticsearch
+    environment:
+      - discovery.type=single-node
+    ports:
+      - "9200:9200"
+      - "9300:9300"
+
+  kibana:
+    image: docker.elastic.co/kibana/kibana:7.6.0
+    hostname: kibana
+    container_name: kibana
+    environment:
+      SERVER_NAME: kibana
+      ELASTICSEARCH_URL: http://elasticsearch:9200/
+      ES_JAVA_OPTS: "-Xms1g -Xmx2g"
+    ports:
+      - "5601:5601"
+    links:
+      - elasticsearch
+    depends_on:
+      - elasticsearch
+
+  logstash:
+    build: ./logstash
+    hostname: logstash
+    container_name: logstash
+    command: logstash -f ./conf/logstash.conf
+    ports:
+      - "5044:5044"
+    links:
+      - elasticsearch
+    depends_on:
+      - elasticsearch

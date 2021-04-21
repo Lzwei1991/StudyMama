@@ -1,0 +1,7 @@
+docker image prune
+y
+docker container prune
+y
+docker image rm studymama:latest
+docker-compose -f docker-compose.yml up --build -d
+

@@ -44,7 +44,6 @@ public class JwtAuthenticationEntryPoint implements AuthenticationEntryPoint {
 			}
 			byte[] body = new ObjectMapper().writeValueAsBytes(Collections.singletonMap("error", message));
 			response.getOutputStream().write(body);
-			LOG.error("JwtAuthenticationEntryPoint null exception " + message);
 		}
 	}
 

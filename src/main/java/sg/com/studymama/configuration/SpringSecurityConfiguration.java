@@ -6,6 +6,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.config.http.SessionCreationPolicy;
@@ -34,7 +35,10 @@ public class SpringSecurityConfiguration extends WebSecurityConfigurerAdapter {
 	public PasswordEncoder passwordEncoder() {
 		return new BCryptPasswordEncoder();
 	}
-
+	@Override
+	public void configure(WebSecurity web) throws Exception {
+		web.ignoring().antMatchers("/swagger-ui/**", "/v3/api-docs/**");
+	}
 	@Override
 	public void configure(AuthenticationManagerBuilder auth) throws Exception {
 		auth.userDetailsService(userDetailsService).passwordEncoder(passwordEncoder());
@@ -49,12 +53,22 @@ public class SpringSecurityConfiguration extends WebSecurityConfigurerAdapter {
 	@Override
 	protected void configure(HttpSecurity httpSecurity) throws Exception {
 		httpSecurity.csrf().disable().authorizeRequests().antMatchers("/helloadmin").hasRole("ADMIN")
-				.antMatchers("/hellouser").hasAnyRole("ADMIN", "USER")
-				.antMatchers("/authenticate", "/register")
-				.permitAll().anyRequest().authenticated().and().exceptionHandling()
-				.authenticationEntryPoint(unauthorizedHandler).and().
+				.antMatchers("/hellouser", "/updateProfile", "/profilePicture").hasAnyRole("ADMIN", "USER")
+				.antMatchers("/authenticate", "/register", "/search", "/fakecategorysearch",
+						"/postService/*",
+						"/v2/api-docs", //for swagger stuff
+                        "/configuration/ui",
+                        "/swagger-resources/**",
+                        "/configuration/security",
+                        "/swagger-ui.html",
+                        "/swagger-ui/*",
+                        "/swagger-ui/index.html",
+                        "/v3/api-docs/",
+                        "/webjars/**").permitAll().anyRequest().authenticated().and()
+				.exceptionHandling().and().httpBasic().authenticationEntryPoint(unauthorizedHandler).and().
 				// make sure we use stateless session; session won't be used to
 				// store user's state.
+
 				sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
 		// Add a filter to validate the tokens with every request
 		httpSecurity.addFilterBefore(customJwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class);
