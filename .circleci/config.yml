@@ -5,7 +5,7 @@ jobs:
       - image: circleci/openjdk:8u181-jdk
       - image: circleci/mysql:8.0
       - image: circleci/maven@3.6.3
-       auth:
+        auth:
           username: 451573589
           password: yuanfen.123
     steps:
@@ -13,3 +13,10 @@ jobs:
       - run:
           command: maven install
       
+workflows:
+  my-workflow:
+    jobs:
+      - build:
+          context:
+            - build-env-vars
+            - docker-hub-creds
