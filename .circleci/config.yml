@@ -8,5 +8,5 @@ jobs:
     steps:
       - checkout
       - run:
-          command: maven install
-      
+          command: 
+            maven install
