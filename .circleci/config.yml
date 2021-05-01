@@ -9,5 +9,4 @@ jobs:
       - checkout
       - run:
           command: maven install
-      - run:
-          command:
+      
