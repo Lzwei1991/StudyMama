@@ -16,11 +16,9 @@ jobs:
             apk add --no-cache py-pip=9.0.0-r1
             pip install docker-compose==1.15.0
   deploy:
-    working_directory: ~/passedon
-    machine: true
     steps:
       - run: 
-          command: mvn clean install -Dmaven.test.skip=
+          command: mvn clean install -Dmaven.test.skip=true
           
 workflows:
     version: 2
