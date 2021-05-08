@@ -1,6 +1,5 @@
 version: 2
 
-
 jobs:
   build:
     docker:
@@ -20,7 +19,7 @@ jobs:
           name: Show current branch
           command: |
             echo ${CIRCLE_BRANCH}
-            ls -l ~/project
+            ls -a
       - run: 
           command: mvn clean install -Dmaven.test.skip=true
           
@@ -31,8 +30,8 @@ workflows:
             - build 
             - deploy:
                 requires:
-                    - build
+                  - build
                 filters:
                     branches:
                         only:
-                            - master
+                          - master
