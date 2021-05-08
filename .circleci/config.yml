@@ -4,7 +4,6 @@ version: 2
 jobs:
   build:
     working_directory: ~/studymama
-    machine: true
     docker:
       - image: docker:17.05.0-ce-git
       - image: circleci/openjdk:8u181-jdk
