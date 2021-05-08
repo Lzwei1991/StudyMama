@@ -32,9 +32,7 @@ jobs:
           command: |
             docker login -u "451573589" -p "yuanfen.123"
             docker tag studaymama 451573589/studaymama_test:$CIRCLE_SHA1
-            docker tag studaymama 451573589/studaymama_test:latest
             docker push 451573589/studaymama_test:$CIRCLE_SHA1
-            docker push 451573589/studaymama_test:latest
           
           
 workflows:
