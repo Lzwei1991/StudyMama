@@ -31,8 +31,10 @@ jobs:
           name: Push application Docker image
           command: |
             docker login -u "451573589" -p "yuanfen.123"
-            docker tag studaymama 451573589/studaymama_test:$CIRCLE_SHA1
-            docker push 451573589/studaymama_test:$CIRCLE_SHA1
+            docker tag studymama 451573589/studymama_test:$CIRCLE_SHA1
+            docker tag studymama 451573589/studymama_test:latest
+            docker push 451573589/studymama_test:$CIRCLE_SHA1
+            docker push 451573589/studymama_test:latest
           
           
 workflows:
