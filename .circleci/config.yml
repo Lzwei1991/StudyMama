@@ -19,6 +19,17 @@ jobs:
     working_directory: ~/studymama
     machine: true
     steps:
+      - persist_to_workspace:
+          root: ~/studymama
+          paths:
+            - target
+      # Log the current branch
+      - run:
+          name: Show current branch
+          command: |
+            echo ${CIRCLE_BRANCH}
+            ls -l ~/studymama
+            ls -l ~/studymama/targe
       - run: 
           command: mvn clean install -Dmaven.test.skip=true
           
