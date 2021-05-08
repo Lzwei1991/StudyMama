@@ -18,6 +18,15 @@ jobs:
       - run: 
           command: | 
             mvn clean install -Dmaven.test.skip=true
+      - run:
+          name: docker-compose and run
+          command: | 
+            docker image prune
+            y
+            docker container prune
+            y
+            docker image rm studymama:latest
+            docker-compose -f docker-compose.yml up --build -d
       - deploy:
           name: Push application Docker image
           command: |
