@@ -5,8 +5,8 @@ jobs:
     docker:
       - image: 852737601544.dkr.ecr.us-east-1.amazonaws.com:0.1
         aws_auth:
-          aws_access_key_id: "AKIA4NCY7GAEKEBUVUUN" 
-          aws_secret_access_key: "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"
+          aws_access_key_id: $AWS_ACCESS_KEY_ID 
+          aws_secret_access_key: $AWS_SECRET_ACCESS_KEY
       - image: circleci/openjdk:8u181-jdk
       - image: circleci/mysql:8.0
     orbs:
