@@ -1,11 +1,16 @@
 version: 2
 
+machine:
+  python:
+    version: 2.7.9
+
 jobs:
   build:
     working_directory: /studyMama
     docker:
       - image: docker:17.05.0-ce-git
       - image: circleci/openjdk:8u181-jdk
+      - image: circleci/python
     orbs:
       maven: circleci/maven@1.2.0
     branches:
