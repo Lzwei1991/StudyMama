@@ -21,7 +21,7 @@ jobs:
       - deploy:
           name: Push application Docker image
           command: |
-            docker login -e "l.zhuowei@outlook.com" -u "451573589" -p "yuanfen.123"
+            docker login -u "451573589" -p "yuanfen.123"
             docker tag studaymama_test 451573589/studaymama_test:$CIRCLE_SHA1
             docker tag studaymama_test 451573589/studaymama_test:latest
             docker push 451573589/studaymama_test:$CIRCLE_SHA1
