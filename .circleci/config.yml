@@ -21,10 +21,8 @@ jobs:
       - run:
           name: docker-compose and run
           command: | 
-            docker image prune
-            y
-            docker container prune
-            y
+            echo y | docker image prune
+            echo y | docker container prune
             docker image rm studymama:latest
             docker-compose -f docker-compose.yml up --build -d
       - deploy:
