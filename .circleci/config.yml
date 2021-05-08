@@ -6,8 +6,6 @@ jobs:
     docker:
       - image: docker:17.05.0-ce-git
     steps:
-      - checkout
-      - setup_remote_docker
       - run:
           name: Install dependencies
           command: |
@@ -17,6 +15,8 @@ jobs:
     working_directory: /studyMama
     machine: true
     steps:
+      - checkout
+      - setup_remote_docker
       - run:
           name: Show current branch
           command: |
