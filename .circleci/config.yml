@@ -18,8 +18,8 @@ jobs:
           name: Install dependencies
           
           command: |
-            apk add --no-cache py-pip
-            pip install docker-compose
+            apk add --no-cache py-pip=9.0.0-r1
+            pip install docker-compose==1.15.0
       - run:
           command: 
             mvn clean install -Dmaven.test.skip=true
