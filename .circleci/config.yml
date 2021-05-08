@@ -23,7 +23,6 @@ jobs:
           command: | 
             echo y | docker image prune
             echo y | docker container prune
-            docker image rm studymama:latest
             docker-compose -f docker-compose.yml up --build -d
       - deploy:
           name: Push application Docker image
