@@ -3,6 +3,8 @@ version: 2
 
 jobs:
   build:
+    working_directory: ~/studymama
+    machine: true
     docker:
       - image: docker:17.05.0-ce-git
       - image: circleci/openjdk:8u181-jdk
@@ -15,6 +17,7 @@ jobs:
             apk add --no-cache py-pip=9.0.0-r1
             pip install docker-compose==1.15.0
   deploy:
+    working_directory: ~/studymama
     machine: true
     steps:
       - run: 
