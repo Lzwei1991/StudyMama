@@ -1,16 +1,12 @@
 version: 2
 
-machine:
-  python:
-    version: 3.7.9
-
 jobs:
   build:
     working_directory: /studyMama
     docker:
       - image: docker:17.05.0-ce-git
       - image: circleci/openjdk:8u181-jdk
-      - image: circleci/python
+      - image: circleci/python:3.7
     orbs:
       maven: circleci/maven@1.2.0
     branches:
@@ -20,11 +16,10 @@ jobs:
       - setup_remote_docker
       - run:
           name: Install dependencies
+          
           command: |
-            apt-get install python3-pip python3-venv
-            ptyhon3 -m venv -venv
-            source venv/bin/activate
-            pip3 install docker-compose
+            apk add --no-cache py-pip
+            pip install docker-compose
       - run:
           command: 
             mvn clean install -Dmaven.test.skip=true
