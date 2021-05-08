@@ -2,7 +2,6 @@ version: 2
 
 jobs:
   build:
-    working_directory: /studyMama
     docker:
       - image: docker:17.05.0-ce-git
     steps:
@@ -13,13 +12,11 @@ jobs:
             apk add --no-cache py-pip=9.0.0-r1
             pip install docker-compose==1.15.0
   deploy:
-    working_directory: /studyMama
     machine: true
     steps:
       - checkout
       - run: 
           command: | 
-            cd /studyMama
             mvn clean install -Dmaven.test.skip=true
           
 workflows:
