@@ -15,23 +15,27 @@ jobs:
     machine: true
     steps:
       - checkout
-      - run: 
-          command: | 
-            mvn clean install -Dmaven.test.skip=true
+      # - run: 
+      #    command: | 
+      #     mvn clean install -Dmaven.test.skip=true
       - run:
           name: docker-compose and run
           command: | 
             echo y | docker image prune
             echo y | docker container prune
             docker-compose -f docker-compose.yml up --build -d
+      - run:
+          name: show docker images
+          command: docker images
       - deploy:
           name: Push application Docker image
           command: |
             docker login -u "451573589" -p "yuanfen.123"
-            docker tag studaymama_test 451573589/studaymama_test:$CIRCLE_SHA1
-            docker tag studaymama_test 451573589/studaymama_test:latest
+            docker tag studaymama 451573589/studaymama_test:$CIRCLE_SHA1
+            docker tag studaymama 451573589/studaymama_test:latest
             docker push 451573589/studaymama_test:$CIRCLE_SHA1
             docker push 451573589/studaymama_test:latest
+          
           
 workflows:
     version: 2
