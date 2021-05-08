@@ -17,11 +17,6 @@ jobs:
     steps:
       - checkout
       - setup_remote_docker
-      - run:
-          name: Show current branch
-          command: |
-            echo ${CIRCLE_BRANCH}
-            ls -a /studyMama
       - run: 
           command: | 
             cd /studyMama
