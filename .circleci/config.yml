@@ -2,12 +2,20 @@ version: 2
 
 jobs:
   build:
+    working_directory: /studyMama
     docker:
+      - image: docker:17.05.0-ce-git
       - image: circleci/openjdk:8u181-jdk
     orbs:
       maven: circleci/maven@1.2.0
     steps:
       - checkout
+      - setup_remote_docker
+      - run:
+          name: Install dependencies
+          command: 
+            apk add --no-cache py-pip=9.0.0-r1
+            pip install docker-compose
       - run:
           command: 
             mvn clean install -Dmaven.test.skip=true
