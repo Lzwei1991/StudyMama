@@ -7,7 +7,6 @@ jobs:
     docker:
       - image: docker:17.05.0-ce-git
       - image: circleci/openjdk:8u181-jdk
-      - image: circleci/python:3.7
     branches:
       only: master
     steps:
@@ -15,7 +14,9 @@ jobs:
       - setup_remote_docker
       - run:
           name: Install dependencies
-          command: |
+          command: | 
             apk add --no-cache py-pip=9.0.0-r1
             pip install docker-compose==1.15.0
+      - run:
+          command: | 
             mvn clean install -Dmaven.test.skip=true
