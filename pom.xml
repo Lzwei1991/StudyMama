@@ -55,31 +55,25 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-data-jpa</artifactId>
 		</dependency>
-		        <dependency>
-            <groupId>com.voodoodyne.jackson.jsog</groupId>
-            <artifactId>jackson-jsog</artifactId>
-            <version>1.1</version>
-        </dependency>
+		<dependency>
+			<groupId>com.voodoodyne.jackson.jsog</groupId>
+			<artifactId>jackson-jsog</artifactId>
+			<version>1.1</version>
+		</dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-data-neo4j</artifactId>
 		</dependency>
-	<!-- 	<dependency>
-            <groupId>org.neo4j</groupId>
-            <artifactId>neo4j</artifactId>
-            <version>3.4.6</version>
-        </dependency> -->
+		<!-- <dependency> <groupId>org.neo4j</groupId> <artifactId>neo4j</artifactId> 
+			<version>3.4.6</version> </dependency> -->
 		<dependency>
 			<groupId>org.neo4j</groupId>
 			<artifactId>neo4j-ogm-bolt-driver</artifactId>
 			<version>2.1.1</version>
 		</dependency>
-<!-- 		<dependency>
-            <groupId>org.neo4j</groupId>
-            <artifactId>neo4j-ogm-core</artifactId>
-            <version>2.1.1</version>
-        </dependency> -->
-		
+		<!-- <dependency> <groupId>org.neo4j</groupId> <artifactId>neo4j-ogm-core</artifactId> 
+			<version>2.1.1</version> </dependency> -->
+
 		<dependency>
 			<groupId>mysql</groupId>
 			<artifactId>mysql-connector-java</artifactId>
@@ -118,8 +112,12 @@
 			<artifactId>javafaker</artifactId>
 			<version>1.0.2</version>
 		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-mail</artifactId>
+		</dependency>
 	</dependencies>
-	
+
 	<build>
 		<plugins>
 			<plugin>

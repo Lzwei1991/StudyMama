@@ -61,6 +61,7 @@ public class SpringSecurityConfiguration extends WebSecurityConfigurerAdapter {
 				.antMatchers("/authenticate", "/register", "/search", "/postDelete", "/post", "/post/*", "/postData",
 						"/postFormSubmit", "/fakecategorysearch", "/commentSubmit", "/commentDelete/*", "/rateSubmit",
 						"/Recommendation", "/greeting", "/demo", "/initPostData/*", "/postService/*",
+						"/sendemail",
 						"/actuator/health", "/v2/api-docs", // for swagger stuff
 						"/configuration/ui", "/swagger-resources/**", "/configuration/security", "/swagger-ui.html",
 						"/swagger-ui/*", "/swagger-ui/index.html", "/v3/api-docs/", "/webjars/**")

@@ -4,6 +4,7 @@ public class UserDTO {
 
 	private String username;
 	private String password;
+	private String email;
 	private String role;
 
 	public String getUsername() {
@@ -21,6 +22,14 @@ public class UserDTO {
 	public void setPassword(String password) {
 		this.password = password;
 	}
+	
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
 
 	public String getRole() {
 		return role;
@@ -32,7 +41,7 @@ public class UserDTO {
 
 	@Override
 	public String toString() {
-		return "UserDTO [username=" + username + ", password=" + password + ", role=" + role + "]";
+		return "UserDTO [username=" + username + ", password=" + password + ", email=" + email + ", role=" + role + "]";
 	}
 
 }

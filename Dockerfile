@@ -10,8 +10,9 @@
 #
 
 # ADD LOGSTASH
-# FROM docker.elastic.co/logstash/logstash:7.6.0
-# COPY logstash/conf/logstash.conf /usr/share/logstash/config
+FROM docker.elastic.co/logstash/logstash:7.6.0
+COPY logstash/conf/logstash.conf /usr/share/logstash/config
+ 
 # Build stage
 #
 FROM maven:3.8.1-jdk-8-slim AS build

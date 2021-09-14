@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import io.jsonwebtoken.Claims;
@@ -31,6 +32,7 @@ import sg.com.studymama.model.AuthenticationRequest;
 import sg.com.studymama.model.AuthenticationResponse;
 import sg.com.studymama.service.CustomUserDetailsService;
 import sg.com.studymama.service.JwtUtil;
+import sg.com.studymama.util.CryptoUtils;
 
 @CrossOrigin(origins = "*")
 @RestController
@@ -73,6 +75,16 @@ public class AuthenticationController {
 	@RequestMapping(value = "/register", method = RequestMethod.POST)
 	public ResponseEntity<?> saveUser(@RequestBody UserDTO user) throws Exception {
 		LOG.info("New registration: " + user.toString());
+		return ResponseEntity.ok(userDetailsService.save(user));
+	}
+	
+	@CrossOrigin(origins = "*")
+	@RequestMapping(value = "/verifyemail", method = RequestMethod.POST)
+	public ResponseEntity<?> verifyEmail(@RequestParam String data) throws Exception {
+		String username = CryptoUtils.decrypt(data);
+		UserDTO user = new UserDTO();
+		user.setUsername(username);
+		LOG.info("Verify Email: " + user.toString());
 		return ResponseEntity.ok(userDetailsService.save(user));
 	}
 

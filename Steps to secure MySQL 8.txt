@@ -29,7 +29,7 @@ DROP SCHEMA world;
 
 6. Create database
 
-CREATE SCHEMA `studymama` ;
+CREATE SCHEMA `studymama`;
 
 7. Separation of duties
 
@@ -52,13 +52,11 @@ CREATE USER 'dev_dannel'@'localhost' IDENTIFIED BY 'dev_4_dannel_P@$$';
 CREATE USER 'read_only'@'localhost' IDENTIFIED BY 'read_only_1_P@$$';
 CREATE USER 'rw_only'@'localhost' IDENTIFIED BY 'rw_only_1_P@$$';
 	
-	
 	- Assign each user account its required privileges
 	
 GRANT 'app_developer' TO 'dev_aung'@'localhost', 'dev_liye'@'localhost', 'dev_xinyi'@'localhost', 'dev_dannel'@'localhost';
 GRANT 'app_read' TO 'read_only'@'localhost';
 GRANT 'app_read', 'app_write' TO 'rw_only'@'localhost';
-	
 	
 8. Checking Role Privileges
 

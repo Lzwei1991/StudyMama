@@ -19,6 +19,10 @@ public class DAOUser extends Auditable<String> {
 	@Column
 	private String password;
 	@Column
+	private String email;
+	@Column
+	private Boolean isEmailVerified;
+	@Column
 	private String role;
 	@Column
 	private long user_profile_id;
@@ -37,6 +41,22 @@ public class DAOUser extends Auditable<String> {
 
 	public void setPassword(String password) {
 		this.password = password;
+	}
+	
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+	
+	public Boolean getEmailVerified() {
+		return isEmailVerified;
+	}
+
+	public void setEmailVerified(Boolean isEmailVerified) {
+		this.isEmailVerified = isEmailVerified;
 	}
 
 	public String getRole() {
@@ -57,8 +77,9 @@ public class DAOUser extends Auditable<String> {
 
 	@Override
 	public String toString() {
-		return "DAOUser [id=" + id + ", username=" + username + ", password=" + password + ", role=" + role
-				+ ", user_profile_id=" + user_profile_id + "]";
+		return "DAOUser [id=" + id + ", username=" + username + ", password=" + password + ", email=" + email
+				+ ", isEmailVerified=" + isEmailVerified + ", role=" + role + ", user_profile_id=" + user_profile_id
+				+ "]";
 	}
 
 }
