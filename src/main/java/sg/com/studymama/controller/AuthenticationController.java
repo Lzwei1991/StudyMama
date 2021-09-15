@@ -79,13 +79,13 @@ public class AuthenticationController {
 	}
 	
 	@CrossOrigin(origins = "*")
-	@RequestMapping(value = "/verifyemail", method = RequestMethod.POST)
+	@RequestMapping(value = "/verifyemail", method = RequestMethod.GET)
 	public ResponseEntity<?> verifyEmail(@RequestParam String data) throws Exception {
 		String username = CryptoUtils.decrypt(data);
 		UserDTO user = new UserDTO();
 		user.setUsername(username);
 		LOG.info("Verify Email: " + user.toString());
-		return ResponseEntity.ok(userDetailsService.save(user));
+		return ResponseEntity.ok(userDetailsService.verifyEmail(user));
 	}
 
 	@CrossOrigin(origins = "*")

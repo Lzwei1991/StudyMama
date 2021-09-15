@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import sg.com.studymama.service.EmailService;
+import sg.com.studymama.util.CryptoUtils;
 
 @RestController
 public class TestController {
@@ -48,11 +49,21 @@ public class TestController {
 	@RequestMapping(value = "/sendemail", method = RequestMethod.GET)
 	public String sendEmail(@RequestParam String email) {
 		try {
-			emailService.sendEmail(email);
+			emailService.testEmail(email);
 		} catch (MessagingException e) {
 			LOG.error("Send email error: ", e);
 			return "Email sending failed";
 		}
 		return "Email sent successfully";
+	}
+	
+	@RequestMapping(value = "/encrypt", method = RequestMethod.GET)
+	public String encrypt(@RequestParam String data) {
+		return CryptoUtils.encrypt(data);
+	}
+	
+	@RequestMapping(value = "/decrypt", method = RequestMethod.GET)
+	public String decrypt(@RequestParam String data) {
+		return CryptoUtils.decrypt(data);
 	}
 }

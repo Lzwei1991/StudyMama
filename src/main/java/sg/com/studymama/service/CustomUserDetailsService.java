@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import javax.mail.MessagingException;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -38,6 +40,9 @@ public class CustomUserDetailsService implements UserDetailsService {
 
 	@Autowired
 	private PasswordEncoder bcryptEncoder;
+	
+	@Autowired
+    private EmailService emailService;
 
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException, UserEmailVerificationException {
@@ -55,7 +60,7 @@ public class CustomUserDetailsService implements UserDetailsService {
 		throw new UsernameNotFoundException("User not found with username: " + username);
 	}
 
-	public DAOUser save(UserDTO user) throws UserAlreadyExistAuthenticationException {
+	public DAOUser save(UserDTO user) throws UserAlreadyExistAuthenticationException, MessagingException {
 		if (!ROLES.contains(user.getRole()))
 			throw new UserRoleException("Wrong role selection");
 		if (userDao.findByUsername(user.getUsername()) == null) {
@@ -69,6 +74,7 @@ public class CustomUserDetailsService implements UserDetailsService {
 			userProfileDao.save(newProfile);
 			newUser.setUser_profile_id(newProfile.getId());
 			LOG.info("save " + newUser.toString());
+			emailService.sendEmailVerifyLink(user.getEmail(), user.getUsername());
 			return userDao.save(newUser);
 		}
 		throw new UserAlreadyExistAuthenticationException("username already exists: " + user.getUsername());
@@ -79,7 +85,7 @@ public class CustomUserDetailsService implements UserDetailsService {
 		if (daoUser == null)
 			throw new UsernameNotFoundException("User not found with username: " + user.getUsername());
 		else {
-			if (!ROLES.contains(user.getRole()))
+			if (!ROLES.contains(daoUser.getRole()))
 				throw new UserRoleException("Wrong role selection");
 			daoUser.setEmailVerified(true);
 			return userDao.save(daoUser);

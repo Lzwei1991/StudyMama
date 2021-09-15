@@ -58,13 +58,14 @@ public class SpringSecurityConfiguration extends WebSecurityConfigurerAdapter {
 		httpSecurity.csrf().disable().authorizeRequests().antMatchers("/helloadmin").hasRole("ADMIN")
 				.antMatchers("/hellouser", "/updateProfile", "/getProfile", "/categoryList", "/profilePicture")
 				.hasAnyRole("ADMIN", "USER")
-				.antMatchers("/authenticate", "/register", "/search", "/postDelete", "/post", "/post/*", "/postData",
-						"/postFormSubmit", "/fakecategorysearch", "/commentSubmit", "/commentDelete/*", "/rateSubmit",
-						"/Recommendation", "/greeting", "/demo", "/initPostData/*", "/postService/*",
-						"/sendemail",
-						"/actuator/health", "/v2/api-docs", // for swagger stuff
-						"/configuration/ui", "/swagger-resources/**", "/configuration/security", "/swagger-ui.html",
-						"/swagger-ui/*", "/swagger-ui/index.html", "/v3/api-docs/", "/webjars/**")
+				.antMatchers("/*")//allow all
+//				.antMatchers("/authenticate", "/register", "/search", "/postDelete", "/post", "/post/*", "/postData",
+//						"/postFormSubmit", "/fakecategorysearch", "/commentSubmit", "/commentDelete/*", "/rateSubmit",
+//						"/Recommendation", "/greeting", "/demo", "/initPostData/*", "/postService/*",
+//						"/sendemail",
+//						"/actuator/health", "/v2/api-docs", // for swagger stuff
+//						"/configuration/ui", "/swagger-resources/**", "/configuration/security", "/swagger-ui.html",
+//						"/swagger-ui/*", "/swagger-ui/index.html", "/v3/api-docs/", "/webjars/**")
 				.permitAll().anyRequest().authenticated().and().exceptionHandling().and().httpBasic()
 				.authenticationEntryPoint(unauthorizedHandler).and().
 				// make sure we use stateless session; session won't be used to
