@@ -149,3 +149,56 @@ log_error_verbosity Value 	Permitted Message Priorities
 3 	ERROR, WARNING, INFORMATION
 
 SET GLOBAL log_error_verbosity=3;
+
+16. Install MySQL Enterprise Audit
+
+mysql -u root -p < audit_log_filter_win_install.sql
+
+17. Check installation success
+
+SELECT PLUGIN_NAME, PLUGIN_STATUS
+       FROM INFORMATION_SCHEMA.PLUGINS
+       WHERE PLUGIN_NAME LIKE 'audit%';
+       
+ +-------------+---------------+
+| PLUGIN_NAME | PLUGIN_STATUS |
++-------------+---------------+
+| audit_log   | ACTIVE        |
++-------------+---------------+
+
+
+18. Set auditable events
+
+SELECT audit_log_filter_set_filter('log_all', '{ "filter": { "log": true } }');
+SELECT audit_log_filter_set_user('%', 'log_all');
+
+19. If needed, to uninstall
+
+DROP TABLE IF EXISTS mysql.audit_log_user;
+DROP TABLE IF EXISTS mysql.audit_log_filter;
+UNINSTALL PLUGIN audit_log;
+DROP FUNCTION audit_log_filter_set_filter;
+DROP FUNCTION audit_log_filter_remove_filter;
+DROP FUNCTION audit_log_filter_set_user;
+DROP FUNCTION audit_log_filter_remove_user;
+DROP FUNCTION audit_log_filter_flush;
+DROP FUNCTION audit_log_encryption_password_get;
+DROP FUNCTION audit_log_encryption_password_set;
+DROP FUNCTION audit_log_read;
+DROP FUNCTION audit_log_read_bookmark;
+
+20. Data-at-rest encryption
+
+SET GLOBAL default_table_encryption=ON;
+
+ALTER TABLE studymama.user ENCRYPTION = 'Y'; (for individual tables)
+
+21. View encrypted tables
+
+SELECT SPACE, NAME, SPACE_TYPE, ENCRYPTION FROM INFORMATION_SCHEMA.INNODB_TABLESPACES WHERE ENCRYPTION='Y'
+
+22. Master Key Rotation
+
+The master encryption key should be rotated periodically and whenever you suspect that the key has been compromised.
+
+ALTER INSTANCE ROTATE INNODB MASTER KEY;
