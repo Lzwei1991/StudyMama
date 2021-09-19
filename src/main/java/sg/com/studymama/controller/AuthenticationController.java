@@ -91,7 +91,6 @@ public class AuthenticationController {
 	@CrossOrigin(origins = "*")
 	@RequestMapping(value = "/refreshtoken", method = RequestMethod.GET)
 	public ResponseEntity<?> refreshtoken(HttpServletRequest request) throws Exception {
-
 		final String authHeader = request.getHeader("Authorization");
 		if (authHeader == null || !authHeader.startsWith("Bearer ")) {
 			throw new ServletException("Missing or invalid Authorization header.");

@@ -13,8 +13,7 @@ public class CryptoUtils {
 
 	private static final Logger LOG = LoggerFactory.getLogger(CryptoUtils.class);
 	private static final String ALGO = "AES";
-	private static final byte[] keyValue = new byte[] { 'S', 'T', 'U', 'D', 'Y', 'M', 'A', 'M', 'A', '1', '2', '3', '4',
-			'5', '6', '7' };
+	private static final byte[] keyValue = new byte[] { 'S', 'T', 'U', 'D', 'Y', 'M', 'A', 'M', 'A', '1', '2', '3', '4', '5', '6', '7' };
 
 	/**
 	 * Encrypt a string using AES encryption algorithm.
@@ -35,7 +34,6 @@ public class CryptoUtils {
 			LOG.error("encrypt", e);
 		}
 		return encodedPwd;
-
 	}
 
 	/**

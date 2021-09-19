@@ -13,6 +13,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.warrenstrange.googleauth.GoogleAuthenticator;
+
 import sg.com.studymama.service.EmailService;
 import sg.com.studymama.util.CryptoUtils;
 
@@ -65,5 +67,21 @@ public class TestController {
 	@RequestMapping(value = "/decrypt", method = RequestMethod.GET)
 	public String decrypt(@RequestParam String data) {
 		return CryptoUtils.decrypt(data);
+	}
+	
+	@RequestMapping(value = "/testGenerateOTP", method = RequestMethod.GET)
+	public String testGenerateOTP(String secret) {
+		GoogleAuthenticator gAuth = new GoogleAuthenticator();
+		int code = gAuth.getTotpPassword(secret);
+		return String.valueOf(code);
+	}
+	
+	@RequestMapping(value = "/testVerifyOTP", method = RequestMethod.GET)
+	public String testVerifyOTP(String secret, String otp) {
+		boolean authorizedOtp = false;
+		GoogleAuthenticator gAuth = new GoogleAuthenticator();
+		authorizedOtp = gAuth.authorize(secret,
+				Integer.parseInt(otp));
+		return String.valueOf(authorizedOtp);
 	}
 }
