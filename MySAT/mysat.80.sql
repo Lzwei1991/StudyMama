@@ -241,7 +241,7 @@ select if(count(*)=1, '<td class="pass">Pass', '<td class="low">Fail<td>Not conf
 select '<tr><td><a name="dp2e"></a>Undo encryption' ;
 select if(count(*)=1, '<td class="pass">Pass', '<td class="low">Fail<td>Not configured'), '<td>', variable_value
   from performance_schema.global_variables
- where variable_name='innodb_undo_encrypt'
+ where variable_name='innodb_undo_log_encrypt'
    and coalesce(variable_value, 'OFF') = 'ON';
 select '<tr><td><a name="dp4"></a><b>Network encryption</b>' ;
 select '<tr><td><a name="dp4a"></a>SSL/TLS configured' ;

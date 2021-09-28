@@ -1,0 +1,50 @@
+Backup and Recovery Strategy
+
+Scenarios:
+
+- Operating system crash
+
+- Power failure
+
+- File system crash
+
+- Hardware problem (hard drive, motherboard, and so forth)
+    
+Backup Policy (Full Backup Once a week, incremental every day)
+
+1. Full backup of all InnoDB tables in all databases
+
+	- mysqldump --user=studymama -pr00tP@$$0wrd --databases studymama --master-data --single-transaction > backup_sunday_1_PM.sql
+	
+2. Incremental Backup
+
+	- Turn on binary logging in config file:
+	log_bin=mysql_bin_log
+	
+	- Turn on for only studymama database:
+	binlog-do-db=studymama
+	
+	- Set max file size and create new file:
+	max_binlog_size=100M
+	
+	- To purge the binary logs automatically after a 7 days:
+	expire_logs_days=7
+	
+		
+	- Flush the MySQL binary logs at the moment of the full backup, and so that the dump file contains the name of the new current binary log, delete old logs
+	mysqldump --single-transaction --flush-logs --master-data=2 \ --all-databases --delete-master-logs > backup_sunday_1_PM.sql
+	
+Recovery Policy
+
+1. Restore last full backup
+
+mysql < backup_sunday_1_PM.sql
+
+2. Restore last daily incremental backups
+
+mysqlbinlog studymama_bin_log.000007 studymama_bin_log.000008 | mysql
+
+3. Restore current day existing data
+
+ mysqlbinlog studymama_bin_log.000009 ... | mysql
+

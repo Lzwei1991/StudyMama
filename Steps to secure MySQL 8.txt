@@ -202,3 +202,30 @@ SELECT SPACE, NAME, SPACE_TYPE, ENCRYPTION FROM INFORMATION_SCHEMA.INNODB_TABLES
 The master encryption key should be rotated periodically and whenever you suspect that the key has been compromised.
 
 ALTER INSTANCE ROTATE INNODB MASTER KEY;
+
+23. Redo Log Encryption
+
+Redo log data encryption is enabled using the innodb_redo_log_encrypt configuration option. Redo log encryption is disabled by default. 
+When innodb_redo_log_encrypt is enabled, unencrypted redo log pages that are present on disk remain unencrypted, and new redo log pages are written to disk in encrypted form.
+Likewise, when innodb_redo_log_encrypt is disabled, encrypted redo log pages that are present on disk remain encrypted, and new redo log pages are written to disk in unencrypted form. 
+
+GRANT INNODB_REDO_LOG_ENABLE ON *.* to 'studymama'@'localhost';
+ALTER INSTANCE ENABLE INNODB REDO_LOG;
+set @@global.innodb_redo_log_encrypt = ON
+
+24. Undo Log Encryption
+
+When innodb_undo_log_encrypt is enabled, unencrypted undo log pages that are present on disk remain unencrypted, and new undo log pages are written to disk in encrypted form.
+Likewise, when innodb_undo_log_encrypt is disabled, encrypted undo log pages that are present on disk remain encrypted, and new undo log pages are written to disk in unencrypted form.
+
+set @@global.innodb_undo_log_encrypt = ON
+
+25. Require SSL connection
+
+SET PERSIST require_secure_transport=ON;
+ALTER USER 'read_only'@'localhost' REQUIRE X509;
+ALTER USER 'rw_only'@'localhost' REQUIRE X509;
+
+26. Add Performance Statistics Collector
+
+mysql --user=studymama -pr00tP@$$w0rd --skip-column-names -f < my2_80.sql
