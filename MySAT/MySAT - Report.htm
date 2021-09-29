@@ -1,4 +1,3 @@
-mysql> \. mysat.80.sql
 <!DOCTYPE html><html lang="en"><head><meta charset="UTF-8" />
 <link rel="stylesheet" href="mysat.css" />
 <title>MySAT Report</title></head><body>
@@ -44,8 +43,8 @@ mysql> \. mysat.80.sql
 <tr><td><A HREF="#xgdpr"><b>GDPR Cross Reference</b><td><A HREF="#xcis"><b>CIS Benchmarks Cross Reference</b></A>
 <td> <A HREF="#xcve"><b>CVE Details</b></A>
 </table><p><br><hr>
-<P>Statistics generated on: 	2021-08-28 17:56:11
- by: 	root@localhost	as: 	root@localhost
+<P>Statistics generated on: 	2021-09-28 22:14:49
+ by: 	studymama@localhost	as: 	studymama@localhost
 using: <I><b>mysat.80.sql</b> v.1.0.3 (2018-10-01)
 <br>Software by 
 <A HREF="https://www.xenialab.com/english/">XeniaLAB</A></I><p><HR>
@@ -53,9 +52,13 @@ using: <I><b>mysat.80.sql</b> v.1.0.3 (2018-10-01)
 <table><tr><td><a name="ac"></a><h4>Database Access Control</h4><td><td><td width="50%">
 <tr><td><a name="ac1"></a><b>Separation of Roles</b>
 <tr><td><a name="ac1e"></a>CRUD users
-<td class="med">Fail<td>No CRUD users<td>
+<td class="eval">Evaluate<td><td>
+app_write@%
 <tr><td><a name="ac1f"></a>Roles
-<td class="low">Fail<td>No Active roles<td>
+<td class="pass">Pass<td><td>
+app_developer
+app_read
+app_write
 <tr><td><a name="ac2"></a><b>Application user credential protection</b>
 <tr><td><a name="ac2a"></a>Connection strings
 <td class="ext">External<td>Check protection and obfuscation
@@ -64,7 +67,13 @@ using: <I><b>mysat.80.sql</b> v.1.0.3 (2018-10-01)
 <td class="pass">Pass<td>
 <tr><td><a name="ac7"></a><b>Lifecycle management</b>
 <tr><td><a name="ac7a"></a>Password expire
-<td class="eval">Evaluate<td>No users with password expire
+<td class="pass">Pass<td><td>
+dev_aung
+dev_dannel
+dev_liye
+dev_xinyi
+read_only
+rw_only
 <tr><td><a name="ac8"><b>OS privilege escalation</b>
 <tr><td><a name="ac8a"></a>Anonymous user
 <td class="pass">Pass
@@ -85,7 +94,7 @@ using: <I><b>mysat.80.sql</b> v.1.0.3 (2018-10-01)
 <tr><td><a name="lg2d"></a>Binlog Path
 <td class="pass">Pass<td>	C:\\ProgramData\\MySQL\\MySQL Server 8.0\\Data\\DESKTOP-9S42RE7-bin
 <tr><td><a name="lg2e"></a>Error Level
-<td class="low">Fail<td>	2
+<td class="pass">Pass<td>	3
 <tr><td><a name="lg3"></a><b>Log analysis</b>
 <tr><td><a name="lg3a"></a>Automatic log analyze<td class="ext">External<td>Log analysis is strongly suggested
 <tr><td><a name="lg4"></a><b>Event management</b>
@@ -99,41 +108,36 @@ using: <I><b>mysat.80.sql</b> v.1.0.3 (2018-10-01)
 <tr><td><a name="dp1"></a><b>Application encryption</b>
 <tr><td><a name="dp2"></a><b>Tablespace encryption</b>
 <tr><td><a name="dp2a"></a>Encryption enabled
-<td class="med">Fail<td>No at-rest encryption<td>
+<td class="pass">Pass
 <tr><td><a name="dp2c"></a>Suspect sensitive tables
 <td class="eval">Evaluate<td>Check suspect tables.columns: <td> 
-sakila.actor.first_name
-sakila.actor.last_name
-sakila.actor_info.first_name
-sakila.actor_info.last_name
-sakila.address.postal_code
-sakila.customer.email
-sakila.customer.first_name
-sakila.customer.last_name
-sakila.staff.email
-sakila.staff.first_name
-sakila.staff.last_name
-sakila.staff.password
-sakila.staff.username
+studymama.post_pic.username
+studymama.profile_pic.username
+studymama.user.email
+studymama.user.is_email_verified
+studymama.user.password
+studymama.user.username
+studymama.user_profile.first_name
+studymama.user_profile.last_name
 ...
 <tr><td><a name="dp2d"></a>Redo encryption
-<td class="low">Fail<td>Not configured	<td>	NULL
+<td class="pass">Pass	<td>	ON
 <tr><td><a name="dp2e"></a>Undo encryption
-<td class="low">Fail<td>Not configured	<td>	NULL
+<td class="pass">Pass	<td>	ON
 <tr><td><a name="dp4"></a><b>Network encryption</b>
 <tr><td><a name="dp4a"></a>SSL/TLS configured
 <td class="pass">Pass
 <tr><td><a name="dp4b"></a>Users required to use encryption
-<td class="med">Fail<td>Encryption is not required
+<td class="pass">Pass
 <tr><td><a name="dp5"></a><b>Backup</b>
 <tr><td><a name="dp5a"></a>DB Backup execution
-<td class="eval">Evaluate<td>No backup detected
+<td class="pass">Pass
 <tr><td><a name="dp5b"></a>Backup encryption
 <td class="ext">External<td>Check backup encryption
 <tr><td><a name="dp5c"></a>Backup policies
 <td class="ext">External<td>Check backup retention policies
 <tr><td><a name="dp5d"></a>Binlog retention
-<td class="low">Fail<td>Not configured correctly
+<td class="pass">Pass
 <tr><td><a name="dp7"></a><b>Data Masking</b>
 <tr><td><a name="dp7a"></a>miXen package
 <td class="low">Fail<td>miXen data masking package not found
@@ -161,16 +165,15 @@ sakila.staff.username
 <td class="pass">Pass
 <tr><td><a name="sc2e"></a>Admin users <>root
 <td class="pass">Pass
+studymama@localhost
 <tr><td><a name="sc2e2"></a>Oper users <>root
 <td class="pass">Pass
 <tr><td><a name="sc2e3"></a>Authentication Plugin
 <td class="pass">Pass
 <tr><td><a name="sc2e4"></a>Password reuse history
-<td class="eval">Evaluate<td><td> 
-root
+<td class="pass">Pass
 <tr><td><a name="sc2e4"></a>Password reuse time
-<td class="eval">Evaluate<td><td> 
-root
+<td class="pass">Pass
 <tr><td><a name="sc2f"></a>IDS<td class="ext">External<td>Configure IDS to monitor honeypot
 <tr><td><a name="sc2g"></a>Spammable tables
 <td class="pass">Pass
@@ -184,14 +187,14 @@ root
 <td class="pass">Pass
 <tr><td><a name="sc2n"></a>Automatic User Creation
 <td class="pass">Pass<td>Always disabled in 8.0
-<tr><td><a name="sc2o"></a>Password lenght
-<td class="med">Fail<td>Too short<td>	NULL
+<tr><td><a name="sc2o"></a>Password length
+<td class="pass">Pass<td>	8
 <tr><td><a name="sc2p"></a>Password policy
-<td class="med">Fail<td>Not secure<td>	NULL
+<td class="pass">Pass<td>	MEDIUM
 <tr><td><a name="sc2p2"></a>Password validate component
-<td class="med">Fail<td>Component not installed<td>
+<td class="pass">Pass<td>
 <tr><td><a name="sc2q"></a>Performance statistics
-<td class="low">Fail<td>my2 collector not found
+<td class="pass">Pass
 <tr><td><a name="sc2r"></a>local_infile
 <td class="pass">Pass
 <tr><td><a name="sc2s"></a>Symbolic Links
@@ -200,19 +203,19 @@ root
 <td class="ext">Evaluate<td>Do not enable skip_grant_tables
 <tr><td><a name="sc3"><b>Patching</b>
 <tr><td><a name="sc3a"></a>MySQL update
-<td class="med">Fail
+<td class="pass">Pass
 <td>	8.0.26
 <tr><td><a name="sc3c"></a>MySAT update
-<td class="med">Fail
+<td class="pass">Pass
 <td>1.0.3
 <!-- 1st April check -->
 <tr><td>&nbsp;<tr><td><a name="gdpr1"><b>GDPR Countdown</b>
 <tr><td><a name="gdpr1a"></a>Days since promulgation
 <td class="pass">Pass
-<td>	1949
+<td>	1980
 <tr><td><a name="gdpr1b"></a>Days since application
 <td class="pass">Pass<td>
-1191
+1222
 <tr><td>&nbsp;</table><p>
 <hr><P><A NAME="conf"></A><h2>DB Configuration</h2>
 <P><A NAME="status"></A>
@@ -220,72 +223,82 @@ root
 <tr><td><b>Item</b>	<td><b>Value</b>
 <tr><td>Version :	<td>	8.0.26
 <tr><td>Created :	<td>	2021-08-28 08:59:27
-<tr><td>Started :	<td>	2021-08-28 16:59:32
-<tr><td>Database Size (MB):	<td align=right>	10
+<tr><td>Started :	<td>	2021-09-28 21:22:53
+<tr><td>Database Size (MB):	<td align=right>	3
 <tr><td>Buffers Size (MB):	<td align="right">	191
-<tr><td>Defined Users :	<td align="right">	4
+<tr><td>Defined Users :	<td align="right">	13
 <tr><td>Defined Schemata :	<td align="right">	5
-<tr><td>Defined Tables :	<td align=right>	353
-<tr><td>Sessions :	<td align="right">	4
+<tr><td>Defined Tables :	<td align=right>	342
+<tr><td>Sessions :	<td align="right">	5
 <tr><td>Sessions (active) :	<td align="right">	2
-<tr><td>Questions (#/sec.) :	<td align=right>	3.07796
-<tr><td>Connections (#/sec.) :	<td align=right>	0.01648
-<tr><td>BinLog Writes Day (MB) :	<td align=right>	285
+<tr><td>Questions (#/sec.) :	<td align=right>	0.58312
+<tr><td>Connections (#/sec.) :	<td align=right>	0.00674
+<tr><td>BinLog Writes Day (MB) :	<td align=right>	7
 <tr><td>Hostname :	<td>	DESKTOP-9S42RE7
 <tr><td>Port :	<td>	3306
 </table><p>
 <P><A NAME="usr"></A>
 <P><table border="2"><tr><td><b>Users</b></td></tr>
 <tr><td><b>User</b>	<td><b>Host</b>	<td><b><code>SL IUD CDGRIA CCS CAE RR SSPFSR</code></b>	<td><b>Select</b>	<td><b>Execute</b>	<td><b>Grant</b>	<td><b>Expired</b>	<td><b>Locked</b>	<td><b>Password lifetime</b>	<td><b>Password history</b>	<td><b>Plugin</b>
+<tr><td>	app_developer	<td>	%	<td><code>	NN NNN NNNNNN NNN NNN NN NNNNNN	</code><td>	N	<td>	N	<td>	N	<td>	Y	<td>	Y	<td>	NULL	<td>	NULL	 over 	NULL	gg	<td>	caching_sha2_password
+<tr><td>	app_read	<td>	%	<td><code>	NN NNN NNNNNN NNN NNN NN NNNNNN	</code><td>	N	<td>	N	<td>	N	<td>	Y	<td>	Y	<td>	NULL	<td>	NULL	 over 	NULL	gg	<td>	caching_sha2_password
+<tr><td>	app_write	<td>	%	<td><code>	NN NNN NNNNNN NNN NNN NN NNNNNN	</code><td>	N	<td>	N	<td>	N	<td>	Y	<td>	Y	<td>	NULL	<td>	NULL	 over 	NULL	gg	<td>	caching_sha2_password
+<tr><td>	dev_aung	<td>	localhost	<td><code>	NN NNN NNNNNN NNN NNN NN NNNNNN	</code><td>	N	<td>	N	<td>	N	<td>	N	<td>	N	<td>	183	<td>	5	 over 	365	gg	<td>	caching_sha2_password
+<tr><td>	dev_dannel	<td>	localhost	<td><code>	NN NNN NNNNNN NNN NNN NN NNNNNN	</code><td>	N	<td>	N	<td>	N	<td>	N	<td>	N	<td>	183	<td>	5	 over 	365	gg	<td>	caching_sha2_password
+<tr><td>	dev_liye	<td>	localhost	<td><code>	NN NNN NNNNNN NNN NNN NN NNNNNN	</code><td>	N	<td>	N	<td>	N	<td>	N	<td>	N	<td>	183	<td>	5	 over 	365	gg	<td>	caching_sha2_password
+<tr><td>	dev_xinyi	<td>	localhost	<td><code>	NN NNN NNNNNN NNN NNN NN NNNNNN	</code><td>	N	<td>	N	<td>	N	<td>	N	<td>	N	<td>	183	<td>	5	 over 	365	gg	<td>	caching_sha2_password
 <tr><td>	mysql.infoschema	<td>	localhost	<td><code>	YN NNN NNNNNN NNN NNN NN NNNNNN	</code><td>	Y	<td>	N	<td>	N	<td>	N	<td>	Y	<td>	NULL	<td>	NULL	 over 	NULL	gg	<td>	caching_sha2_password
 <tr><td>	mysql.session	<td>	localhost	<td><code>	NN NNN NNNNNN NNN NNN NN YYNNNN	</code><td>	N	<td>	N	<td>	N	<td>	N	<td>	Y	<td>	NULL	<td>	NULL	 over 	NULL	gg	<td>	caching_sha2_password
 <tr><td>	mysql.sys	<td>	localhost	<td><code>	NN NNN NNNNNN NNN NNN NN NNNNNN	</code><td>	N	<td>	N	<td>	N	<td>	N	<td>	Y	<td>	NULL	<td>	NULL	 over 	NULL	gg	<td>	caching_sha2_password
-<tr><td>	root	<td>	localhost	<td><code>	YY YYY YYYYYY YYY YYY YY YYYYYY	</code><td>	Y	<td>	Y	<td>	Y	<td>	N	<td>	N	<td>	NULL	<td>	NULL	 over 	NULL	gg	<td>	caching_sha2_password
+<tr><td>	read_only	<td>	localhost	<td><code>	NN NNN NNNNNN NNN NNN NN NNNNNN	</code><td>	N	<td>	N	<td>	N	<td>	N	<td>	N	<td>	183	<td>	5	 over 	365	gg	<td>	caching_sha2_password
+<tr><td>	rw_only	<td>	localhost	<td><code>	NN NNN NNNNNN NNN NNN NN NNNNNN	</code><td>	N	<td>	N	<td>	N	<td>	N	<td>	N	<td>	183	<td>	5	 over 	365	gg	<td>	caching_sha2_password
+<tr><td>	studymama	<td>	localhost	<td><code>	YY YYY YYYYYY YYY YYY YY YYYYYY	</code><td>	Y	<td>	Y	<td>	Y	<td>	N	<td>	N	<td>	NULL	<td>	5	 over 	365	gg	<td>	caching_sha2_password
 </table><p>
 <P><A NAME="obj"></A>
 <P><table border="2"><tr><td><b>Schema/Object Matrix</b></td></tr>
 <tr><td><b>Database</b>	<td><b> Tables</b>	<td><b> Indexes</b>	<td><b> Routines</b>	<td><b> Triggers</b>	<td><b> Views</b>	<td><b> Primary Keys</b>	<td><b> Foreign Keys</b>	<td><b> All</b>
 <tr><td>	information_schema	<td align=right>	79	<td align=right>	0	<td align=right>	0	<td align=right>	0	<td align=right>	0	<td align=right>	0	<td align=right>	0	<td align=right>	79
+<tr><td>	my2	<td align=right>	2	<td align=right>	2	<td align=right>	2	<td align=right>	0	<td align=right>	0	<td align=right>	0	<td align=right>	0	<td align=right>	6
 <tr><td>	mysql	<td align=right>	37	<td align=right>	38	<td align=right>	0	<td align=right>	0	<td align=right>	0	<td align=right>	35	<td align=right>	0	<td align=right>	110
 <tr><td>	performance_schema	<td align=right>	110	<td align=right>	95	<td align=right>	0	<td align=right>	0	<td align=right>	0	<td align=right>	61	<td align=right>	0	<td align=right>	266
-<tr><td>	sakila	<td align=right>	23	<td align=right>	40	<td align=right>	6	<td align=right>	6	<td align=right>	7	<td align=right>	16	<td align=right>	22	<td align=right>	120
+<tr><td>	studymama	<td align=right>	13	<td align=right>	20	<td align=right>	0	<td align=right>	0	<td align=right>	0	<td align=right>	13	<td align=right>	7	<td align=right>	53
 <tr><td>	sys	<td align=right>	101	<td align=right>	1	<td align=right>	48	<td align=right>	2	<td align=right>	100	<td align=right>	1	<td align=right>	0	<td align=right>	253
-<tr><td>	world	<td align=right>	3	<td align=right>	5	<td align=right>	0	<td align=right>	0	<td align=right>	0	<td align=right>	3	<td align=right>	2	<td align=right>	13
-<tr><td>	NULL	<td align=right>	353	<td align=right>	179	<td align=right>	54	<td align=right>	8	<td align=right>	107	<td align=right>	116	<td align=right>	24	<td align=right>	841
+<tr><td>	NULL	<td align=right>	342	<td align=right>	156	<td align=right>	50	<td align=right>	2	<td align=right>	100	<td align=right>	110	<td align=right>	7	<td align=right>	767
 </table><p>
 <P><A NAME="tbs"></A>
 <P><table border="2"><tr><td><b>Space Usage</b></td></tr>
 <tr><td><b>Database	<td><b>Row#</b>	<td><b>Data size</b>	<td><b>Index size</b>	<td><b>Total size</b>	<td><b></b>	<td><b>MyISAM</b>	<td><b>InnoDB</b>	<td><b>Created</b>
 <tr><td>	information_schema	<td align=right>	0	<td align=right>	0	<td align=right>	0	<td align=right>	0	<td>	<td align=right>	0	<td align=right>	0	<td>	2021-08-28
-<tr><td>	mysql	<td align=right>	3,962	<td align=right>	2,375,680	<td align=right>	344,064	<td align=right>	2,719,744	<td>	<td align=right>	0	<td align=right>	2,719,744	<td>	2021-08-28
-<tr><td>	performance_schema	<td align=right>	2,815,442	<td align=right>	0	<td align=right>	0	<td align=right>	0	<td>	<td align=right>	0	<td align=right>	0	<td>	2021-08-28
-<tr><td>	sakila	<td align=right>	47,274	<td align=right>	4,374,528	<td align=right>	2,392,064	<td align=right>	6,766,592	<td>	<td align=right>	0	<td align=right>	6,766,592	<td>	2021-08-28
+<tr><td>	my2	<td align=right>	457	<td align=right>	32,768	<td align=right>	0	<td align=right>	32,768	<td>	<td align=right>	0	<td align=right>	32,768	<td>	2021-09-28
+<tr><td>	mysql	<td align=right>	3,743	<td align=right>	2,342,912	<td align=right>	344,064	<td align=right>	2,686,976	<td>	<td align=right>	0	<td align=right>	2,686,976	<td>	2021-08-28
+<tr><td>	performance_schema	<td align=right>	2,819,568	<td align=right>	0	<td align=right>	0	<td align=right>	0	<td>	<td align=right>	0	<td align=right>	0	<td>	2021-08-28
+<tr><td>	studymama	<td align=right>	5	<td align=right>	212,992	<td align=right>	81,920	<td align=right>	294,912	<td>	<td align=right>	0	<td align=right>	294,912	<td>	2021-09-14
 <tr><td>	sys	<td align=right>	6	<td align=right>	16,384	<td align=right>	0	<td align=right>	16,384	<td>	<td align=right>	0	<td align=right>	16,384	<td>	2021-08-28
-<tr><td>	world	<td align=right>	5,411	<td align=right>	606,208	<td align=right>	196,608	<td align=right>	802,816	<td>	<td align=right>	0	<td align=right>	802,816	<td>	2021-08-28
-<tr><td>	NULL	<td align=right>	2,872,095	<td align=right>	7,372,800	<td align=right>	2,932,736	<td align=right>	10,305,536	<td>	<td align=right>	0	<td align=right>	10,305,536	<td>	2021-08-28
+<tr><td>	NULL	<td align=right>	2,823,779	<td align=right>	2,605,056	<td align=right>	425,984	<td align=right>	3,031,040	<td>	<td align=right>	0	<td align=right>	3,031,040	<td>	2021-08-28
 </table><p>
 <P><A NAME="big"></A>
 <P><table border="2"><tr><td><b>Biggest Objects</b></td></tr>
 <tr><td><b>Database</b>	<td><b>Object</b>	<td><b>Type</b>	<td><b>Engine</b>	<td><b>Bytes</b>	<td><b>Est. rows</b>
-<tr><td>	sakila	<td>	rental	<td>T	<td>	InnoDB	<td align=right>	2,785,280	<td align=right>	16,008
-<tr><td>	sakila	<td>	payment	<td>T	<td>	InnoDB	<td align=right>	2,228,224	<td align=right>	16,086
-<tr><td>	mysql	<td>	help_topic	<td>T	<td>	InnoDB	<td align=right>	1,687,552	<td align=right>	603
-<tr><td>	world	<td>	city	<td>T	<td>	InnoDB	<td align=right>	540,672	<td align=right>	4,188
-<tr><td>	sakila	<td>	inventory	<td>T	<td>	InnoDB	<td align=right>	376,832	<td align=right>	4,581
-<tr><td>	sakila	<td>	film	<td>T	<td>	InnoDB	<td align=right>	278,528	<td align=right>	1,000
-<tr><td>	sakila	<td>	film_actor	<td>T	<td>	InnoDB	<td align=right>	278,528	<td align=right>	5,462
-<tr><td>	mysql	<td>	help_keyword	<td>T	<td>	InnoDB	<td align=right>	262,144	<td align=right>	1,142
-<tr><td>	sakila	<td>	film_text	<td>T	<td>	InnoDB	<td align=right>	196,608	<td align=right>	1,000
-<tr><td>	world	<td>	countrylanguage	<td>T	<td>	InnoDB	<td align=right>	163,840	<td align=right>	984
+<tr><td>	mysql	<td>	help_topic	<td>T	<td>	InnoDB	<td align=right>	1,687,552	<td align=right>	706
+<tr><td>	mysql	<td>	help_keyword	<td>T	<td>	InnoDB	<td align=right>	262,144	<td align=right>	657
+<tr><td>	mysql	<td>	help_relation	<td>T	<td>	InnoDB	<td align=right>	98,304	<td align=right>	2,153
+<tr><td>	mysql	<td>	tables_priv	<td>T	<td>	InnoDB	<td align=right>	32,768	<td align=right>	2
+<tr><td>	mysql	<td>	proxies_priv	<td>T	<td>	InnoDB	<td align=right>	32,768	<td align=right>	1
+<tr><td>	mysql	<td>	help_category	<td>T	<td>	InnoDB	<td align=right>	32,768	<td align=right>	53
+<tr><td>	mysql	<td>	replication_asynchronous_connection_failover	<td>T	<td>	InnoDB	<td align=right>	32,768	<td align=right>	0
+<tr><td>	mysql	<td>	replication_group_member_actions	<td>T	<td>	InnoDB	<td align=right>	32,768	<td align=right>	1
+<tr><td>	mysql	<td>	procs_priv	<td>T	<td>	InnoDB	<td align=right>	32,768	<td align=right>	0
+<tr><td>	mysql	<td>	db	<td>T	<td>	InnoDB	<td align=right>	32,768	<td align=right>	5
 </table><p>
 <P><A NAME="prc"></A>
 <P><table border="2"><tr><td><b>Processes</b></td></tr>
 <tr><td><b>Id</b><td><b>User</b><td><b>Host</b>
 <td><b>DB</b><td><b>Command</b><td><b>Time</b><td><b>State</b>
-<tr><td>	5	<td>	event_scheduler	<td>	localhost	<td>	NULL	<td>	Daemon	<td>	3399	<td>	Waiting on empty queue
-<tr><td>	49	<td>	root	<td>	localhost:63463	<td>	NULL	<td>	Sleep	<td>	504	<td>	
-<tr><td>	50	<td>	root	<td>	localhost:63464	<td>	information_schema	<td>	Sleep	<td>	402	<td>	
-<tr><td>	56	<td>	root	<td>	localhost:54586	<td>	information_schema	<td>	Query	<td>	0	<td>	executing
+<tr><td>	5	<td>	event_scheduler	<td>	localhost	<td>	NULL	<td>	Daemon	<td>	40	<td>	Waiting for next activation
+<tr><td>	8	<td>	studymama	<td>	localhost:54194	<td>	studymama	<td>	Sleep	<td>	307	<td>	
+<tr><td>	9	<td>	studymama	<td>	localhost:54195	<td>	studymama	<td>	Sleep	<td>	3	<td>	
+<tr><td>	16	<td>	studymama	<td>	localhost:56484	<td>	NULL	<td>	Sleep	<td>	1538	<td>	
+<tr><td>	21	<td>	studymama	<td>	localhost:56577	<td>	information_schema	<td>	Query	<td>	0	<td>	executing
 </table><p>
 <P><A NAME="sga"></A>
 <P><table border="2"><tr><td><b>Tuning Parameters (most used ones)</b></td></tr>
@@ -321,29 +334,29 @@ root
 <tr><td><b>Statistic</b><td><b>Value</b><td><b>Suggested value</b><td><b>Potential Action</b>
 <tr><!01><td>	Uptime	 (days)<td align=right>	0		
 <tr><!15><td>	Buffer Cache: MyISAM Read Hit Ratio	<td align=right>	NULL	<td> >95	<td>Increase KEY_BUFFER_SIZE
-<tr><!16><td>	Buffer Cache: InnoDB Read Hit Ratio	<td align=right>	99.67	<td> >95	<td>Increase INNODB_BUFFER_SIZE
+<tr><!16><td>	Buffer Cache: InnoDB Read Hit Ratio	<td align=right>	98.79	<td> >95	<td>Increase INNODB_BUFFER_SIZE
 <tr><!17><td>	Buffer Cache: MyISAM Write Hit Ratio	<td align=right>	NULL	<td> >95	<td>Increase KEY_BUFFER_SIZE
-<tr><!18><td>	Log Cache: InnoDB Log Write Ratio	<td align=right>	97.47	<td> >95	<td>Increase INNODB_LOG_BUFFER_SIZE
-<tr><!20><td>	Threads_connected	<td align=right>	3 /151	<td>Far from maximum	<td>Increase MAX_CONNECTIONS
+<tr><!18><td>	Log Cache: InnoDB Log Write Ratio	<td align=right>	92.36	<td> >95	<td>Increase INNODB_LOG_BUFFER_SIZE
+<tr><!20><td>	Threads_connected	<td align=right>	4 /151	<td>Far from maximum	<td>Increase MAX_CONNECTIONS
 <tr><!21><td>	Threads_running	<td align=right>	2	<td>LOW	<td>Check user load
 <tr><!30><td>	Slow_queries	<td align=right>	0	<td>LOW	<td>Check application
-<tr><!35><td>	DBcpu (SUM_TIMER_WAIT)	<td align=right>	0.00141		
-<tr><!37><td>	Connections	 #/sec.<td align=right>	0.01648		
-<tr><!40><td>	Questions	 #/sec.<td align=right>	3.08856		
-<tr><!41><td>	SELECT	 #/sec.<td align=right>	1.40100		
-<tr><!42><td>	COMMIT	 #/sec. (TPS)<td align=right>	0.00530		
-<tr><!45><td>	COM DML #/sec.	<td align=right>	2.96587		
-<tr><!50><td>	Bytes_sent	 Mb/sec.<td align=right>	0.00411		
-<tr><!51><td>	Bytes_received	 Mb/sec.<td align=right>	0.01015		
+<tr><!35><td>	DBcpu (SUM_TIMER_WAIT)	<td align=right>	0.00035		
+<tr><!37><td>	Connections	 #/sec.<td align=right>	0.00674		
+<tr><!40><td>	Questions	 #/sec.<td align=right>	0.59467		
+<tr><!41><td>	SELECT	 #/sec.<td align=right>	0.51380		
+<tr><!42><td>	COMMIT	 #/sec. (TPS)<td align=right>	0.00000		
+<tr><!45><td>	COM DML #/sec.	<td align=right>	0.51380		
+<tr><!50><td>	Bytes_sent	 Mb/sec.<td align=right>	0.00121		
+<tr><!51><td>	Bytes_received	 Mb/sec.<td align=right>	0.00060		
 </table><p>
 <a id="sqls"></a><P><table border="2"><tr><td><b>SQL Statements</b></td>
 <td align="right">Representativeness:	100.00	%
 <tr><td><b>Schema</b>	<td><b>Text</b>	<td><b>Count</b>	<td><b>Sum Timer</b>	<td><b>Human Timer</b>	<td><b>Average (sec.)</b>	<td><b>Rows affected</b>	<td><b>Rows Sent</b>	<td><b>Rows Examined</b>	<td><b>TMP Disk Create</b>	<td><b>TMP Create</b>	<td><b>Sort Merge#</b>	<td><b>No Index</b>	<td><b>No Good Index</b>
-<tr><td>	information_schema	<td>	SELECT ( `cat` . `name` COLLATE `utf8_tolower_ci` ) AS `TABLE_CATALOG` , ( `sch` . `name` COLLATE `utf8_tolower_ci` ) AS `TABLE_SCHE	 ...<td align="right">	99	<td align="right">	697950800000	<td align="right">	00:00:00.6979	<td align="right">	0.007	<td align="right">	0	<td align="right">	407	<td align="right">	66177	<td align="right">	22	<td>	44	<td>	0	<td>	35	<td align="right">	0
-<tr><td>	sakila	<td>	INSERT INTO `payment` VALUES (...) /* , ... */	 ...<td align="right">	2	<td align="right">	396575200000	<td align="right">	00:00:00.3965	<td align="right">	0.198	<td align="right">	16049	<td align="right">	0	<td align="right">	0	<td align="right">	0	<td>	0	<td>	0	<td>	0	<td align="right">	0
-<tr><td>	sakila	<td>	INSERT INTO `rental` VALUES (...) /* , ... */	 ...<td align="right">	2	<td align="right">	382859900000	<td align="right">	00:00:00.3828	<td align="right">	0.191	<td align="right">	16044	<td align="right">	0	<td align="right">	0	<td align="right">	0	<td>	0	<td>	0	<td>	0	<td align="right">	0
-<tr><td>	world	<td>	INSERT INTO `City` VALUES (...)	 ...<td align="right">	4079	<td align="right">	350700200000	<td align="right">	00:00:00.3507	<td align="right">	0.000	<td align="right">	4079	<td align="right">	0	<td align="right">	0	<td align="right">	0	<td>	0	<td>	0	<td>	0	<td align="right">	0
-<tr><td>	information_schema	<td>	SELECT ( `cat` . `name` COLLATE `utf8_tolower_ci` ) AS `CONSTRAINT_CATALOG` , ( `sch` . `name` COLLATE `utf8_tolower_ci` ) AS `CONST	 ...<td align="right">	11	<td align="right">	330376200000	<td align="right">	00:00:00.3303	<td align="right">	0.030	<td align="right">	0	<td align="right">	77	<td align="right">	18502	<td align="right">	0	<td>	77	<td>	0	<td>	11	<td align="right">	0
+<tr><td>	information_schema	<td>	SELECT ( `cat` . `name` COLLATE `utf8_tolower_ci` ) AS `TABLE_CATALOG` , ( `sch` . `name` COLLATE `utf8_tolower_ci` ) AS `TABLE_SCHE	 ...<td align="right">	32	<td align="right">	310283400000	<td align="right">	00:00:00.3102	<td align="right">	0.010	<td align="right">	0	<td align="right">	142	<td align="right">	23138	<td align="right">	8	<td>	16	<td>	0	<td>	12	<td align="right">	0
+<tr><td>	information_schema	<td>	SELECT ( `cat` . `name` COLLATE `utf8_tolower_ci` ) AS `CONSTRAINT_CATALOG` , ( `sch` . `name` COLLATE `utf8_tolower_ci` ) AS `CONST	 ...<td align="right">	4	<td align="right">	116005500000	<td align="right">	00:00:00.1160	<td align="right">	0.029	<td align="right">	0	<td align="right">	26	<td align="right">	6112	<td align="right">	0	<td>	28	<td>	0	<td>	4	<td align="right">	0
+<tr><td>	information_schema	<td>	SELECT ? , `variable_name` , ? , `round` ( `variable_value` / ( ? * ? ) , ? ) , ?, ... FROM `performance_schema` . `global_status` W	 ...<td align="right">	4	<td align="right">	48529900000	<td align="right">	00:00:00.0485	<td align="right">	0.012	<td align="right">	0	<td align="right">	64	<td align="right">	1020	<td align="right">	0	<td>	4	<td>	0	<td>	4	<td align="right">	0
+<tr><td>	information_schema	<td>	SELECT ?	 ...<td align="right">	1136	<td align="right">	42878800000	<td align="right">	00:00:00.0428	<td align="right">	0.000	<td align="right">	0	<td align="right">	1136	<td align="right">	1136	<td align="right">	0	<td>	0	<td>	0	<td>	0	<td align="right">	0
+<tr><td>	information_schema	<td>	SELECT IF ( COUNT ( * ) > ?, ... ) FROM `INFORMATION_SCHEMA` . `INNODB_TABLESPACES` WHERE ENCRYPTION = ?	 ...<td align="right">	4	<td align="right">	40520700000	<td align="right">	00:00:00.0405	<td align="right">	0.010	<td align="right">	0	<td align="right">	4	<td align="right">	76	<td align="right">	0	<td>	4	<td>	0	<td>	4	<td align="right">	0
 </table><p>
 <P><A NAME="hostc"></A>
 <P><table border="2"><tr><td><b>Host Cache</b></td></tr>
@@ -379,7 +392,7 @@ root
 <tr><td>	binlog_direct_non_transactional_updates	<td>	OFF
 <tr><td>	binlog_encryption	<td>	OFF
 <tr><td>	binlog_error_action	<td>	ABORT_SERVER
-<tr><td>	binlog_expire_logs_seconds	<td>	2592000
+<tr><td>	binlog_expire_logs_seconds	<td>	0
 <tr><td>	binlog_format	<td>	ROW
 <tr><td>	binlog_group_commit_sync_delay	<td>	0
 <tr><td>	binlog_group_commit_sync_no_delay_count	<td>	0
@@ -424,7 +437,7 @@ root
 <tr><td>	datadir	<td>	C:\\ProgramData\\MySQL\\MySQL Server 8.0\\Data\\
 <tr><td>	default_authentication_plugin	<td>	caching_sha2_password
 <tr><td>	default_collation_for_utf8mb4	<td>	utf8mb4_0900_ai_ci
-<tr><td>	default_password_lifetime	<td>	0
+<tr><td>	default_password_lifetime	<td>	180
 <tr><td>	default_storage_engine	<td>	InnoDB
 <tr><td>	default_table_encryption	<td>	OFF
 <tr><td>	default_tmp_storage_engine	<td>	InnoDB
@@ -440,7 +453,7 @@ root
 <tr><td>	enforce_gtid_consistency	<td>	OFF
 <tr><td>	eq_range_index_dive_limit	<td>	200
 <tr><td>	event_scheduler	<td>	ON
-<tr><td>	expire_logs_days	<td>	0
+<tr><td>	expire_logs_days	<td>	7
 <tr><td>	explicit_defaults_for_timestamp	<td>	ON
 <tr><td>	flush	<td>	OFF
 <tr><td>	flush_time	<td>	0
@@ -590,7 +603,7 @@ root
 <tr><td>	innodb_read_io_threads	<td>	4
 <tr><td>	innodb_read_only	<td>	OFF
 <tr><td>	innodb_redo_log_archive_dirs	<td>	
-<tr><td>	innodb_redo_log_encrypt	<td>	OFF
+<tr><td>	innodb_redo_log_encrypt	<td>	ON
 <tr><td>	innodb_replication_delay	<td>	0
 <tr><td>	innodb_rollback_on_timeout	<td>	OFF
 <tr><td>	innodb_rollback_segments	<td>	128
@@ -617,7 +630,7 @@ root
 <tr><td>	innodb_thread_sleep_delay	<td>	0
 <tr><td>	innodb_tmpdir	<td>	
 <tr><td>	innodb_undo_directory	<td>	.\\
-<tr><td>	innodb_undo_log_encrypt	<td>	OFF
+<tr><td>	innodb_undo_log_encrypt	<td>	ON
 <tr><td>	innodb_undo_log_truncate	<td>	ON
 <tr><td>	innodb_undo_tablespaces	<td>	2
 <tr><td>	innodb_use_fdatasync	<td>	OFF
@@ -633,6 +646,7 @@ root
 <tr><td>	key_cache_age_threshold	<td>	300
 <tr><td>	key_cache_block_size	<td>	1024
 <tr><td>	key_cache_division_limit	<td>	100
+<tr><td>	keyring_file_data	<td>	C:\\ProgramData\\MySQL\\MySQL Server 8.0\\plugin\\keyring_file
 <tr><td>	keyring_operations	<td>	ON
 <tr><td>	large_files_support	<td>	ON
 <tr><td>	large_page_size	<td>	0
@@ -651,7 +665,7 @@ root
 <tr><td>	log_error	<td>	.\\DESKTOP-9S42RE7.err
 <tr><td>	log_error_services	<td>	log_filter_internal; log_sink_internal
 <tr><td>	log_error_suppression_list	<td>	
-<tr><td>	log_error_verbosity	<td>	2
+<tr><td>	log_error_verbosity	<td>	3
 <tr><td>	log_output	<td>	FILE
 <tr><td>	log_queries_not_using_indexes	<td>	OFF
 <tr><td>	log_raw	<td>	OFF
@@ -673,7 +687,7 @@ root
 <tr><td>	master_verify_checksum	<td>	OFF
 <tr><td>	max_allowed_packet	<td>	4194304
 <tr><td>	max_binlog_cache_size	<td>	18446744073709547520
-<tr><td>	max_binlog_size	<td>	1073741824
+<tr><td>	max_binlog_size	<td>	104857600
 <tr><td>	max_binlog_stmt_cache_size	<td>	18446744073709547520
 <tr><td>	max_connect_errors	<td>	100
 <tr><td>	max_connections	<td>	151
@@ -755,7 +769,7 @@ root
 <tr><td>	parser_max_mem_size	<td>	18446744073709551615
 <tr><td>	partial_revokes	<td>	OFF
 <tr><td>	password_history	<td>	0
-<tr><td>	password_require_current	<td>	OFF
+<tr><td>	password_require_current	<td>	ON
 <tr><td>	password_reuse_interval	<td>	0
 <tr><td>	performance_schema	<td>	ON
 <tr><td>	performance_schema_accounts_size	<td>	-1
@@ -853,7 +867,7 @@ root
 <tr><td>	report_password	<td>	
 <tr><td>	report_port	<td>	3306
 <tr><td>	report_user	<td>	
-<tr><td>	require_secure_transport	<td>	OFF
+<tr><td>	require_secure_transport	<td>	ON
 <tr><td>	rpl_read_size	<td>	8192
 <tr><td>	rpl_stop_replica_timeout	<td>	31536000
 <tr><td>	rpl_stop_slave_timeout	<td>	31536000
@@ -962,6 +976,13 @@ root
 <tr><td>	transaction_write_set_extraction	<td>	XXHASH64
 <tr><td>	unique_checks	<td>	ON
 <tr><td>	updatable_views_with_limit	<td>	YES
+<tr><td>	validate_password.check_user_name	<td>	ON
+<tr><td>	validate_password.dictionary_file	<td>	
+<tr><td>	validate_password.length	<td>	8
+<tr><td>	validate_password.mixed_case_count	<td>	1
+<tr><td>	validate_password.number_count	<td>	1
+<tr><td>	validate_password.policy	<td>	MEDIUM
+<tr><td>	validate_password.special_char_count	<td>	1
 <tr><td>	version	<td>	8.0.26
 <tr><td>	version_comment	<td>	MySQL Community Server - GPL
 <tr><td>	version_compile_machine	<td>	x86_64
@@ -1120,7 +1141,6 @@ root
 <p><b>THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
  WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.</b><p><br>
-<hr><P>Statistics generated on: 	2021-08-28 17:56:12
+<hr><P>Statistics generated on: 	2021-09-28 22:14:49
 <p>For more information or suggestions on MySAT contact
 <A HREF="mailto:mail@info.xenialab.it?subject=MySAT">XeniaLAB</A>.<hr><p></body></html>
-mysql> exit

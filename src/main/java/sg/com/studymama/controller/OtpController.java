@@ -10,7 +10,7 @@ import com.warrenstrange.googleauth.GoogleAuthenticator;
 
 @RestController
 public class OtpController {
-	
+
 	private static final Logger LOG = LoggerFactory.getLogger(OtpController.class);
 
 	@RequestMapping(value = "/generateOTP", method = RequestMethod.GET)
@@ -20,15 +20,19 @@ public class OtpController {
 		LOG.info("secret: " + secret + " otp " + code);
 		return String.valueOf(code);
 	}
-	
+
 	@RequestMapping(value = "/verifyOTP", method = RequestMethod.GET)
 	public String verifyOTP(String secret, String otp) {
 		LOG.info("secret: " + secret + " otp " + otp);
 		boolean authorizedOtp = false;
 		GoogleAuthenticator gAuth = new GoogleAuthenticator();
-		authorizedOtp = gAuth.authorize(secret,
-				Integer.parseInt(otp));
+		authorizedOtp = gAuth.authorize(secret, Integer.parseInt(otp));
 		LOG.info("authorizedOtp: " + authorizedOtp);
 		return String.valueOf(authorizedOtp);
+	}
+
+	@RequestMapping(value = "/generateQRcodeString", method = RequestMethod.GET)
+	public String generateQRcodeString(String username, String secret) {
+		return "otpauth://totp/StudyMama:" + username + "?secret=" + secret + "&issuer=StudyMama";
 	}
 }
