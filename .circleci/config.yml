@@ -40,8 +40,9 @@ jobs:
             docker push $DOCKER_USER/studymama:$CIRCLE_SHA1
             docker push $DOCKER_USER/studymama:latest
             #echo "$REMOTE_PRIVATE_KEY" > id_rsa
-            echo $REMOTE_PRIVATE_KEY
-            cat id_rsa
+            #echo $REMOTE_PRIVATE_KEY
+            #cat id_rsa
+            cat $REMOTE_PRIVATE_KEY
             python test.py $REMOTE_HOST $DOCKER_USER
           
           
